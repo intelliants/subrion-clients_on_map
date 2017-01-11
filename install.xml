@@ -35,7 +35,7 @@
 	</phrases>
 
 	<blocks>
-		<block title="Our clients" name="clients_on_map" position="bottom" type="smarty"  classname="box-clear" filename="block.clients_on_map"><[CDATA[]]></block>
+		<block title="Our clients" name="clients_on_map" position="bottom" type="smarty"  classname="box-clear" filename="block.clients_on_map"><![CDATA[]]></block>
 	</blocks>
 
 	<hooks>
