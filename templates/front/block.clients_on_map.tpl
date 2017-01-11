@@ -4,21 +4,21 @@
 
 	{switch $core.config.clients_on_map_type}
 		{case 'google_maps'}
-			<script src="//maps.google.com/maps/api/js?sensor=true"></script>
+			<script type="text/javascript" src="https://maps.google.com/maps/api/js?key={$core.config.clients_on_map_key}"></script>
 			<script>
 				function initialize() {
 					var myOptions = {
 						{if $clients_on_map|@count > 1}
-						center: new google.maps.LatLng(0, 0),
+							center: new google.maps.LatLng(0, 0),
 						{else}
-						center: new google.maps.LatLng({$clients_on_map[0].lat}, {$clients_on_map[0].lng}),
+							center: new google.maps.LatLng({$clients_on_map[0].lat}, {$clients_on_map[0].lng}),
 						{/if}
 						zoom: {$core.config.clients_on_map_zoom},
 						styles: {$core.config.clients_on_map_style},
-						scrollwheel: false,
+						scrollwheel: false
 					};
+					
 					var map = new google.maps.Map(document.getElementById("map"), myOptions);
-
 					var bounds = new google.maps.LatLngBounds();
 
 					{foreach $clients_on_map as $entry}
