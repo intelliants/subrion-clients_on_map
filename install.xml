@@ -26,7 +26,7 @@
 	<config group="clients_on_map" name="clients_on_map_type" type="select" values="google_maps,yandex_maps,2gis" description="Default type map">google_maps</config>
 	<config group="clients_on_map" name="clients_on_map_style" type="textarea" description="Style" show="clients_on_map_type|google_maps">[ { "stylers": [ { "saturation": -80 } ] } ]</config>
 	<config group="clients_on_map" name="clients_on_map_key" type="text" description="Google Map API key" private="0">AIzaSyCZiuPhCJ4MsjhcPARMd5wFPVFtFtdOgCc</config>
-
+  
 	<phrases>
 		<phrase key="client" category="admin">Client</phrase>
 		<phrase key="address" category="admin">Address</phrase>
