@@ -22,7 +22,7 @@
       </div>
 
       <div class="row hidden" id="js-gmap-wrapper">
-        <script src="//maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&key={$core.config.clients_on_map_key}"></script>
         <div class="gmap-data hidden" id="item-gmap-data">
           <input type="hidden" name="lng" value="{if isset($item.lng)}{$item.lng}{/if}">
           <input type="hidden" name="lat" value="{if isset($item.lat)}{$item.lat}{/if}">
