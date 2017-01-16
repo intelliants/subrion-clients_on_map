@@ -13,8 +13,8 @@
 	</adminpages>
 
 	<actions>
-		<action name="clients_on_map_view" url="clients_on_map/" icon="list" pages="clients_on_map:add,clients_on_map:edit">List</action>
-		<action name="clients_on_map_add" url="clients_on_map/add/" icon="plus" pages="clients_on_map:read,clients_on_map:edit">Add Client</action>
+		<action name="clients_on_map_view" url="clients_on_map/" icon="list" pages="clients_on_map:add,clients_on_map:edit">clients_on_map_view</action>
+		<action name="clients_on_map_add" url="clients_on_map/add/" icon="plus" pages="clients_on_map:read,clients_on_map:edit">clients_on_map_add</action>
 	</actions>
 
 	<configgroup name="clients_on_map">Our clients</configgroup>
@@ -31,6 +31,9 @@
 		<phrase key="client" category="admin">Client</phrase>
 		<phrase key="address" category="admin">Address</phrase>
 		<phrase key="location" category="admin">Location</phrase>
+		<phrase key="clients_on_map_add" category="admin">Add Client</phrase>
+		<phrase key="clients_on_map_view" category="admin">List Clients</phrase>
+		
 		<phrase key="our_clients" category="front">Our clients</phrase>
 	</phrases>
 
