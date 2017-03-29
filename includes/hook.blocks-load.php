@@ -2,7 +2,7 @@
 /******************************************************************************
  *
  * Subrion - open source content management system
- * Copyright (C) 2016 Intelliants, LLC <http://www.intelliants.com>
+ * Copyright (C) 2017 Intelliants, LLC <https://intelliants.com>
  *
  * This file is part of Subrion.
  *
@@ -20,31 +20,28 @@
  * along with Subrion. If not, see <http://www.gnu.org/licenses/>.
  *
  *
- * @link http://www.subrion.org/
+ * @link https://subrion.org/
  *
  ******************************************************************************/
 
-if (iaView::REQUEST_HTML == $iaView->getRequestType())
-{
-	if ($iaView->blockExists('clients_on_map'))
-	{
-		$stmt = '`status` = :status AND `lang` = :language';
-		$iaDb->bind($stmt, array('status' => iaCore::STATUS_ACTIVE, 'language' => $iaView->language));
+if (iaView::REQUEST_HTML == $iaView->getRequestType()) {
+    if ($iaView->blockExists('clients_on_map')) {
+        $stmt = '`status` = :status AND `lang` = :language';
+        $iaDb->bind($stmt, array('status' => iaCore::STATUS_ACTIVE, 'language' => $iaView->language));
 
-		$sql =
-			'SELECT SQL_CALC_FOUND_ROWS '.
-			'g.`id`, g.`client`, g.`address`, g.`lat`, g.`lng`'.
-			'FROM `:prefix:table_gmap` g '.
-			'WHERE g.' . $stmt;
+        $sql = <<<SQL
+SELECT SQL_CALC_FOUND_ROWS `id`, `client`, `address`, `lat`, `lng`
+  FROM `:table_gmap` 
+WHERE :statement
+SQL;
+        $sql = iaDb::printf($sql, array(
+            'table_gmap' => $iaDb->prefix . 'clients_on_map',
+            'statement' => $stmt,
+            'status' => iaCore::STATUS_ACTIVE,
+            'language' => $iaView->language
+        ));
+        $data = $iaDb->getAll($sql);
 
-		$sql = iaDb::printf($sql, array(
-			'prefix' => $iaDb->prefix,
-			'table_gmap' => 'clients_on_map',
-			'status' => iaCore::STATUS_ACTIVE,
-			'language' => $iaView->language
-		));
-		$data = $iaDb->getAll($sql);
-
-		$iaView->assign('clients_on_map', $data);
-	}
+        $iaView->assign('clients_on_map', $data);
+    }
 }

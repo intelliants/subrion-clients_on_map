@@ -1,4 +1,4 @@
-<script src="http://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script src="//maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 <script type="text/javascript">
     var map;
 
@@ -12,7 +12,7 @@
         });
         {foreach $clients_on_map as $entry}
         var myIcon = DG.icon({
-            iconUrl: '/plugins/clients_on_map/templates/front/img/marker.png',
+            iconUrl: '/modules/clients_on_map/templates/front/img/marker.png',
             iconRetinaUrl: 'my-icon@2x.png',
             iconSize: [30, 39],
         });
@@ -27,7 +27,7 @@
 
     DG.then(function () {
         var myIcon = DG.icon({
-            iconUrl: '/plugins/clients_on_map/templates/front/img/marker.png',
+            iconUrl: '/modules/clients_on_map/templates/front/img/marker.png',
             iconRetinaUrl: 'my-icon@2x.png',
             iconSize: [30, 39],
         });

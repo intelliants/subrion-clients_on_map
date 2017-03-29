@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin name="clients_on_map">
-	<title>Our clients</title>
-	<summary>Our clients (Google Map plugin)</summary>
-	<author>Intelliants LLC</author>
-	<contributor>Intelliants LLC</contributor>
-	<version>1.0.0</version>
-	<date>2016-09-13</date>
-	<compatibility>4.0</compatibility>
+    <title>Our clients</title>
+    <summary>Our clients (Google Map plugin)</summary>
+    <author>Intelliants LLC</author>
+    <contributor>Intelliants LLC</contributor>
+    <version>1.1.0</version>
+    <date>2017-03-29</date>
+    <compatibility>4.1</compatibility>
 
-	<adminpages>
-		<page name="clients_on_map" url="clients_on_map/" menus="menu" order="50">Our clients</page>
-	</adminpages>
+    <adminpages>
+        <page name="clients_on_map" url="clients_on_map/" menus="menu" order="50">Our clients</page>
+    </adminpages>
 
-	<actions>
-		<action name="clients_on_map_view" url="clients_on_map/" icon="list" pages="clients_on_map:add,clients_on_map:edit">clients_on_map_view</action>
-		<action name="clients_on_map_add" url="clients_on_map/add/" icon="plus" pages="clients_on_map:read,clients_on_map:edit">clients_on_map_add</action>
-	</actions>
+    <actions>
+        <action name="clients_on_map" url="clients_on_map/" icon="list" pages="clients_on_map:add,clients_on_map:edit"><![CDATA[]]></action>
+        <action name="clients_on_map_add" url="clients_on_map/add/" icon="plus" pages="clients_on_map:read,clients_on_map:edit"><![CDATA[]]></action>
+    </actions>
 
-	<configgroup name="clients_on_map">Our clients</configgroup>
+    <configgroup name="clients_on_map">Our clients</configgroup>
 
-	<config group="clients_on_map" name="clients_on_map_divider" type="divider" description="Clients on Map">Our clients</config>
-	<config group="clients_on_map" name="clients_on_map_width" type="text" description="Map width">100%</config>
-	<config group="clients_on_map" name="clients_on_map_height" type="text" description="Map height">350px</config>
-	<config group="clients_on_map" name="clients_on_map_zoom" type="select" values="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21" description="Default zoom level">2</config>
-	<config group="clients_on_map" name="clients_on_map_type" type="select" values="google_maps,yandex_maps,2gis" description="Default type map">google_maps</config>
-	<config group="clients_on_map" name="clients_on_map_style" type="textarea" description="Style" show="clients_on_map_type|google_maps">[ { "stylers": [ { "saturation": -80 } ] } ]</config>
-	<config group="clients_on_map" name="clients_on_map_key" type="text" description="Google Map API key" private="0">AIzaSyCZiuPhCJ4MsjhcPARMd5wFPVFtFtdOgCc</config>
-  
-	<phrases>
-		<phrase key="client" category="admin">Client</phrase>
-		<phrase key="address" category="admin">Address</phrase>
-		<phrase key="location" category="admin">Location</phrase>
-		<phrase key="clients_on_map_add" category="admin">Add Client</phrase>
-		<phrase key="clients_on_map_view" category="admin">List Clients</phrase>
+    <config group="clients_on_map" name="clients_on_map_divider" type="divider" description="Clients on Map">Our clients</config>
+    <config group="clients_on_map" name="clients_on_map_width" type="text" description="Map width">100%</config>
+    <config group="clients_on_map" name="clients_on_map_height" type="text" description="Map height">350px</config>
+    <config group="clients_on_map" name="clients_on_map_zoom" type="select" values="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21" description="Default zoom level">2</config>
+    <config group="clients_on_map" name="clients_on_map_type" type="select" values="google_maps,yandex_maps,2gis" description="Default type map">google_maps</config>
+    <config group="clients_on_map" name="clients_on_map_style" type="textarea" description="Style" show="clients_on_map_type|google_maps">[ { "stylers": [ { "saturation": -80 } ] } ]</config>
+    <config group="clients_on_map" name="clients_on_map_key" type="text" description="Google Map API key" private="0">AIzaSyCZiuPhCJ4MsjhcPARMd5wFPVFtFtdOgCc</config>
 
-		<phrase key="our_clients" category="front">Our clients</phrase>
-	</phrases>
+    <phrases>
+        <phrase key="client" category="admin">Client</phrase>
+        <phrase key="address" category="admin">Address</phrase>
+        <phrase key="location" category="admin">Location</phrase>
+        <phrase key="clients_on_map" category="admin">List Clients</phrase>
+        <phrase key="clients_on_map_add" category="admin">Add Client</phrase>
 
-	<blocks>
-		<block title="Our clients" name="clients_on_map" position="bottom" type="smarty"  classname="box-clear" filename="block.clients_on_map"><![CDATA[]]></block>
-	</blocks>
+        <phrase key="our_clients" category="front">Our clients</phrase>
+    </phrases>
 
-	<hooks>
-		<hook name="phpCoreBeforePageDisplay" type="php" page_type="front" filename="plugins/clients_on_map/includes/hook.blocks-load.php"><![CDATA[]]></hook>
-	</hooks>
+    <blocks>
+        <block title="Our clients" name="clients_on_map" position="bottom" type="smarty"  classname="box-clear" filename="block.clients_on_map"><![CDATA[]]></block>
+    </blocks>
 
-	<install>
-		<sql>
-			<![CDATA[
+    <hooks>
+        <hook name="phpCoreBeforePageDisplay" type="php" page_type="front" filename="hook.blocks-load"><![CDATA[]]></hook>
+    </hooks>
+
+    <install>
+        <sql>
+            <![CDATA[
 CREATE TABLE IF NOT EXISTS `{prefix}clients_on_map` (
-	`id` mediumint(7) unsigned NOT NULL auto_increment,
-	`client` tinytext NOT NULL,
-	`address` tinytext,
-	`lat` tinytext,
-	`lng` tinytext,
-	`lang` char(2) NOT NULL,
-	`status` enum('inactive', 'active') NOT NULL default 'active',
-	PRIMARY KEY  (`id`),
-	KEY `LANGUAGE` (`lang`)
+    `id` mediumint(7) unsigned NOT NULL auto_increment,
+    `client` tinytext NOT NULL,
+    `address` tinytext,
+    `lat` tinytext,
+    `lng` tinytext,
+    `lang` char(2) NOT NULL,
+    `status` enum('inactive', 'active') NOT NULL default 'active',
+    PRIMARY KEY  (`id`),
+    KEY `LANGUAGE` (`lang`)
 ) {mysql_version};
-			]]>
-		</sql>
-	</install>
+            ]]>
+        </sql>
+    </install>
 
-	<uninstall>
-		<sql>
-			<![CDATA[
+    <uninstall>
+        <sql>
+            <![CDATA[
 DROP TABLE IF EXISTS `{prefix}clients_on_map`;
-			]]>
-		</sql>
-	</uninstall>
+            ]]>
+        </sql>
+    </uninstall>
 </plugin>
