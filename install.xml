@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin name="clients_on_map">
+<module type="plugin" name="clients_on_map">
     <title>Our clients</title>
     <summary>Our clients (Google Map plugin)</summary>
     <author>Intelliants LLC</author>
     <contributor>Intelliants LLC</contributor>
-    <version>1.1.0</version>
-    <date>2017-03-29</date>
-    <compatibility>4.1</compatibility>
+    <version>2.0.0</version>
+    <date>2018-03-14</date>
+    <compatibility>4.2</compatibility>
 
     <adminpages>
         <page name="clients_on_map" url="clients_on_map/" menus="menu" order="50">Our clients</page>
@@ -38,11 +38,11 @@
     </phrases>
 
     <blocks>
-        <block title="Our clients" name="clients_on_map" position="bottom" type="smarty"  classname="box-clear" filename="block.clients_on_map"><![CDATA[]]></block>
+        <block title="Our clients" name="clients_on_map" position="bottom" type="smarty"  classname="box-clear" filename="block.clients_on_map.tpl"><![CDATA[]]></block>
     </blocks>
 
     <hooks>
-        <hook name="phpCoreBeforePageDisplay" type="php" page_type="front" filename="hook.blocks-load"><![CDATA[]]></hook>
+        <hook name="phpCoreBeforePageDisplay" type="php" page_type="front" filename="hook.blocks-load.php"><![CDATA[]]></hook>
     </hooks>
 
     <install>
@@ -70,4 +70,4 @@ DROP TABLE IF EXISTS `{prefix}clients_on_map`;
             ]]>
         </sql>
     </uninstall>
-</plugin>
+</module>
