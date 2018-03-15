@@ -15,6 +15,7 @@ Ext.onReady(function () {
         items: [
             {
                 emptyText: _t('text'),
+
                 name: 'fullname',
                 listeners: intelli.gridHelper.listener.specialKey,
                 xtype: 'textfield'
