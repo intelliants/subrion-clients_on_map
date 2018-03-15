@@ -66,9 +66,9 @@
             <![CDATA[
 CREATE TABLE IF NOT EXISTS `{prefix}clients_on_map` (
     `id` mediumint(7) unsigned NOT NULL auto_increment,
-    `date_added` date,
-    `date_modified` date,
-    `featured` tinyint(1) unsigned NOT NULL default 0,
+    `date_added` datetime NOT NULL,
+    `date_modified` datetime NOT NULL,
+    `featured` tinyint(1) unsigned NOT NULL,
     `featured_start` datetime NULL,
     `featured_end` datetime NULL,
     `status` enum('inactive', 'active') NOT NULL default 'active',

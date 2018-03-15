@@ -27,10 +27,9 @@
 class iaClient extends abstractModuleAdmin
 {
     protected static $_table = 'clients_on_map';
+
     protected $_itemName = 'client';
 
     protected $_activityLog = ['item' => 'client'];
-
-    protected $_statuses = [iaCore::STATUS_ACTIVE, iaCore::STATUS_INACTIVE];
 
 }

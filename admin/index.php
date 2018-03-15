@@ -35,12 +35,6 @@ class iaBackendController extends iaAbstractControllerModuleBackend
         return parent::_entryUpdate($entryData, $entryId);
     }
 
-    protected function _assignValues(&$iaView, array &$entryData)
-    {
-        parent::_assignValues($iaView, $entryData);
-
-        unset($entryData['date_added']);
-    }
 
     protected function _setDefaultValues(array &$entry)
     {

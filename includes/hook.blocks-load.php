@@ -27,9 +27,7 @@
 if (iaView::REQUEST_HTML == $iaView->getRequestType() && $iaView->blockExists('clients_on_map')) {
 
     $iaClient = $iaCore->factoryModule('client_on_map', 'clients_on_map');
-
     $data = $iaClient->getClients();
 
     $iaView->assign('clients_on_map', $data);
-
 }
