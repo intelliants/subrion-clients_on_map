@@ -30,23 +30,33 @@ class iaBackendController extends iaAbstractControllerModuleBackend
 
     protected $_table = 'clients_on_map';
 
+    protected $_gridFilters = ['client' => self::LIKE, 'status' => self::EQUAL];
+
+    protected $_gridColumns = ['client', 'status'];
+
     protected function _indexPage(&$iaView)
     {
         $iaView->grid('_IA_URL_modules/' . $this->getModuleName() . '/js/admin/index');
     }
+
 
     protected function _gridQuery($columns, $where, $order, $start, $limit)
     {
         $sql = <<<SQL
 SELECT SQL_CALC_FOUND_ROWS g.`id`, g.`client`, g.`status`, 1 `update`, 1 `delete` 
   FROM `:prefix:table_clients_on_map` g 
+WHERE :where 
+:order
 LIMIT :start, :limit
+
 SQL;
         $sql = iaDb::printf($sql, array(
             'prefix' => $this->_iaDb->prefix,
             'table_clients_on_map' => $this->getTable(),
             'start' => $start,
-            'limit' => $limit
+            'limit' => $limit,
+            'order' => $order,
+            'where' => $where
         ));
 
         return $this->_iaDb->getAll($sql);
