@@ -15,11 +15,11 @@ Ext.onReady(function () {
         items: [
             {
                 emptyText: _t('text'),
-                name: 'text',
+                name: 'client',
                 listeners: intelli.gridHelper.listener.specialKey,
                 xtype: 'textfield'
             }, {
-                displayField: 'client',
+                displayField: 'title',
                 editable: false,
                 emptyText: _t('status'),
                 id: 'fltStatus',
