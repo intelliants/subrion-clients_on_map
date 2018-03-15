@@ -24,12 +24,33 @@
  *
  ******************************************************************************/
 
-if (iaView::REQUEST_HTML == $iaView->getRequestType() && $iaView->blockExists('clients_on_map')) {
+class iaClientOnMap extends abstractModuleFront
+{
+    protected static $_table = 'clients_on_map';
 
-    $iaClient = $iaCore->factoryModule('client_on_map', 'clients_on_map');
+    protected $_itemName = 'client';
 
-    $data = $iaClient->getClients();
+    protected $_activityLog = ['item' => 'client'];
 
-    $iaView->assign('clients_on_map', $data);
+    protected $_statuses = [iaCore::STATUS_ACTIVE, iaCore::STATUS_INACTIVE];
 
+
+    public function getClients()
+    {
+        $sql = <<<SQL
+SELECT SQL_CALC_FOUND_ROWS *
+  FROM `:prefix:clients_on_map`
+WHERE `status` = ':status'
+SQL;
+        $sql = iaDb::printf($sql, array(
+            'prefix' => $this->iaDb->prefix,
+            'clients_on_map' => 'clients_on_map',
+            'status' => iaCore::STATUS_ACTIVE
+        ));
+
+        $data = $this->iaDb->getAll($sql);
+        $this->_processValues($data);
+
+        return $data;
+    }
 }

@@ -3,7 +3,7 @@ Ext.onReady(function () {
         {
             columns: [
                 'selection',
-                {name: 'client', title: _t('client'), width: 2, editor: 'text'},
+                {name: 'fullname', title: _t('fullname'), width: 2, editor: 'text'},
                 'status',
                 'update',
                 'delete'
@@ -15,12 +15,12 @@ Ext.onReady(function () {
         items: [
             {
                 emptyText: _t('text'),
-                name: 'client',
+                name: 'fullname',
                 listeners: intelli.gridHelper.listener.specialKey,
                 xtype: 'textfield'
             }, {
                 displayField: 'title',
-                editable: false,
+                editable: true,
                 emptyText: _t('status'),
                 id: 'fltStatus',
                 name: 'status',

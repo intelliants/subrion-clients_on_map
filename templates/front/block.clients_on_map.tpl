@@ -1,10 +1,8 @@
 {if $clients_on_map}
-
     <div id="map" style=" width: {$core.config.clients_on_map_width}; height: {$core.config.clients_on_map_height}"></div>
-
     {switch $core.config.clients_on_map_type}
         {case 'google_maps'}
-            <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={$core.config.clients_on_map_key}"></script>
+            <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={$core.config.maps_api_key}"></script>
             <script>
                 function initialize() {
                     var myOptions = {
@@ -23,15 +21,15 @@
 
                     {foreach $clients_on_map as $entry}
                         {if empty($entry.address)}
-                            {assign var="content" value="<strong>{$entry.client}</strong>"}
+                            {assign var="content" value="<strong>{$entry.fullname}</strong>"}
                         {else}
-                            {assign var="content" value="<strong>{$entry.client}</strong><br>{$entry.address}"}
+                            {assign var="content" value="<strong>{$entry.fullname}</strong><br>{$entry.address}"}
                         {/if}
                         var item{$entry.id} = new google.maps.LatLng({$entry.lat}, {$entry.lng});
                         var marker{$entry.id} = new google.maps.Marker({
                             position: item{$entry.id},
                             map: map,
-                            title: '{$entry.client}',
+                            title: '{$entry.fullname}',
                             icon: '{$smarty.const.IA_CLEAR_URL}modules/clients_on_map/templates/front/img/marker.png',
                             info: new google.maps.InfoWindow({
                                 content: {json_encode($content)}
@@ -81,8 +79,8 @@
                         {foreach $clients_on_map as $key => $entry}
                             myPlacemark = new ymaps.Placemark([{$entry.lat}, {$entry.lng}], {
 
-                                hintContent: '{$entry.client}',
-                                balloonContent: '<strong>{$entry.client}</strong>{if $entry.address}<p>{$entry.address}</p>{/if}'}, optionsMarkerImage
+                                hintContent: '{$entry.fullname}',
+                                balloonContent: '<strong>{$entry.fullname}</strong>{if $entry.address}<p>{$entry.address}</p>{/if}'}, optionsMarkerImage
                                 );
                             myCollection.add(myPlacemark);
 
@@ -95,8 +93,8 @@
                             zoom: {$core.config.clients_on_map_zoom},
                         });
                         myPlacemark = new ymaps.Placemark([{$clients_on_map[0].lat}, {$clients_on_map[0].lng}], {
-                            hintContent: '{$clients_on_map[0].client}',
-                            balloonContent: '<strong>{$clients_on_map[0].client}</strong>{if $clients_on_map[0].address}<p>{$clients_on_map[0].address}</p>{/if}'},	optionsMarkerImage
+                            hintContent: '{$clients_on_map[0].fullname}',
+                            balloonContent: '<strong>{$clients_on_map[0].fullname}</strong>{if $clients_on_map[0].address}<p>{$clients_on_map[0].address}</p>{/if}'},	optionsMarkerImage
                         );
                         myMap.geoObjects.add(myPlacemark);
                     {/if}
@@ -129,7 +127,7 @@
                             var myIcon = DG.icon(optionsMarker);
                             coordinates[0] = {$entry.lat};
                             coordinates[1] = {$entry.lng};
-                            DG.marker(coordinates, {literal}{icon: myIcon}{/literal}).addTo(markers).bindPopup('<strong>{$entry.client}</strong>{if $entry.address}<p>{$entry.address}</p>{/if}');;
+                            DG.marker(coordinates, {literal}{icon: myIcon}{/literal}).addTo(markers).bindPopup('<strong>{$entry.fullname}</strong>{if $entry.address}<p>{$entry.address}</p>{/if}');;
 
                         {/foreach}
 
@@ -145,7 +143,7 @@
                             zoom: {$core.config.clients_on_map_zoom}
                         });
 
-                        DG.marker([{$clients_on_map[0].lat}, {$clients_on_map[0].lng}], {literal}{icon: myIcon}{/literal}).addTo(map).bindPopup('<strong>{$clients_on_map[0].client}</strong>{if $clients_on_map[0].address}<p>{$clients_on_map[0].address}</p>{/if}');
+                        DG.marker([{$clients_on_map[0].lat}, {$clients_on_map[0].lng}], {literal}{icon: myIcon}{/literal}).addTo(map).bindPopup('<strong>{$clients_on_map[0].fullname}</strong>{if $clients_on_map[0].address}<p>{$clients_on_map[0].address}</p>{/if}');
                     });
                 {/if}
             </script>
