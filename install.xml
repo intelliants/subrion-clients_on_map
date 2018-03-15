@@ -8,6 +8,10 @@
     <date>2018-03-14</date>
     <compatibility>4.2</compatibility>
 
+    <items>
+        <item table_name = "clients_on_map">client</item>
+    </items>
+
     <adminpages>
         <page name="clients_on_map" url="clients_on_map/" menus="menu" order="50">Our clients</page>
     </adminpages>
@@ -25,7 +29,18 @@
     <config group="clients_on_map" name="clients_on_map_zoom" type="select" values="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21" description="Default zoom level">2</config>
     <config group="clients_on_map" name="clients_on_map_type" type="select" values="google_maps,yandex_maps,2gis" description="Default type map">google_maps</config>
     <config group="clients_on_map" name="clients_on_map_style" type="textarea" description="Style" show="clients_on_map_type|google_maps">[ { "stylers": [ { "saturation": -80 } ] } ]</config>
-    <config group="clients_on_map" name="clients_on_map_key" type="text" description="Google Map API key" private="0">AIzaSyCZiuPhCJ4MsjhcPARMd5wFPVFtFtdOgCc</config>
+
+    <fields_groups>
+        <group item="client" name="general" title="General"><![CDATA[]]></group>
+    </fields_groups>
+
+    <fields>
+        <field name="fullname" item="client" type="text" group="general" length="70" required="1" multilingual="1" adminonly="1">Full Name</field>
+        <field name="phone" item="client" type="text" group="general" length="70" adminonly="1">Phone</field>
+        <field name="address" item="client" type="text" group="general" length="70"  multilingual="1" adminonly="1">Address</field>
+        <field name="lng" item="client" type="text" group="general" length="70" required="1" adminonly="1">Longitude</field>
+        <field name="lat" item="client" type="text" group="general" length="70" required="1" adminonly="1">Latitude</field>
+    </fields>
 
     <phrases>
         <phrase key="client" category="admin">Client</phrase>
@@ -33,6 +48,7 @@
         <phrase key="location" category="admin">Location</phrase>
         <phrase key="clients_on_map" category="admin">List Clients</phrase>
         <phrase key="clients_on_map_add" category="admin">Add Client</phrase>
+        <phrase key="fullname_is_empty" category="admin">Fullname is empty</phrase>
 
         <phrase key="our_clients" category="front">Our clients</phrase>
     </phrases>
@@ -50,14 +66,15 @@
             <![CDATA[
 CREATE TABLE IF NOT EXISTS `{prefix}clients_on_map` (
     `id` mediumint(7) unsigned NOT NULL auto_increment,
-    `client` tinytext NOT NULL,
-    `address` tinytext,
-    `lat` tinytext,
-    `lng` tinytext,
-    `lang` char(2) NOT NULL,
+    `date_added` datetime NOT NULL,
+    `date_modified` datetime NOT NULL,
+    `featured` tinyint(1) unsigned NOT NULL,
+    `featured_start` datetime NULL,
+    `featured_end` datetime NULL,
     `status` enum('inactive', 'active') NOT NULL default 'active',
     PRIMARY KEY  (`id`),
-    KEY `LANGUAGE` (`lang`)
+    KEY `STATUS` (`status`)
+
 ) {mysql_version};
             ]]>
         </sql>

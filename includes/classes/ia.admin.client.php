@@ -24,10 +24,12 @@
  *
  ******************************************************************************/
 
-if (iaView::REQUEST_HTML == $iaView->getRequestType() && $iaView->blockExists('clients_on_map')) {
+class iaClient extends abstractModuleAdmin
+{
+    protected static $_table = 'clients_on_map';
 
-    $iaClient = $iaCore->factoryModule('client_on_map', 'clients_on_map');
-    $data = $iaClient->getClients();
+    protected $_itemName = 'client';
 
-    $iaView->assign('clients_on_map', $data);
+    protected $_activityLog = ['item' => 'client'];
+
 }

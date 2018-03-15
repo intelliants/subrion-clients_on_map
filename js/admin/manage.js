@@ -2,9 +2,10 @@ $(function () {
     intelli.marker = null;
     var mapInfo = $('#item-gmap-data');
 
+
     var itemPosition = {
-        lat: $('input[name="lat"]', mapInfo).val(),
-        lng: $('input[name="lng"]', mapInfo).val()
+        lat: $('#field_client_lat').val(),
+        lng: $('#field_client_lng').val()
     };
 
     $('#address_fieldzone').parent().append($('#js-gmap-wrapper'));
@@ -40,8 +41,8 @@ $(function () {
                 intelli.marker,
                 'drag',
                 function () {
-                    $('input[name="lng"]', mapInfo).val(intelli.marker.position.lng());
-                    $('input[name="lat"]', mapInfo).val(intelli.marker.position.lat());
+                    $('#field_client_lng').val(intelli.marker.position.lng());
+                    $('#field_client_lat').val(intelli.marker.position.lat());
                 }
             );
         }
@@ -68,9 +69,10 @@ $(function () {
                 intelli.marker.setPosition(results[0].geometry.location);
                 map.setCenter(results[0].geometry.location);
 
-                $('input[name="lng"]', mapInfo).val(intelli.marker.position.lng());
-                $('input[name="lat"]', mapInfo).val(intelli.marker.position.lat());
+                $('#field_client_lng').val(intelli.marker.position.lng());
+                $('#field_client_lat').val(intelli.marker.position.lat());
             }
         });
     });
+
 });
